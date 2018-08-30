@@ -1,4 +1,4 @@
-import { GAME_LOAD, getGame } from './reducers';
+import { GAME_LOAD, MOVE_LOAD, getGame } from './reducers';
 import { getUser } from '../app/reducers';
 import { gamesRef, movesRef } from '../../services/firebaseRef';
 
@@ -21,6 +21,19 @@ export const unloadGame = gameKey => {
   return {
     type: GAME_LOAD,
     payload: null
+  };
+};
+
+export const loadMoves = gameKey => {
+  return dispatch => {
+    movesRef.child(gameKey).on('value', snapshot => {
+      const moves = Object.keys(snapshot.val());
+
+      dispatch({
+        type: MOVE_LOAD,
+        payload: moves
+      });
+    });
   };
 };
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getGame } from './reducers';
+import { getGame, getMoves } from './reducers';
 import { getUser } from '../app/reducers';
-import { loadGame, unloadGame, move } from './actions';
+import { loadGame, unloadGame, loadMoves, move } from './actions';
 
 class Game extends Component {
   static propTypes = {
@@ -11,13 +11,17 @@ class Game extends Component {
     game: PropTypes.object,
     user: PropTypes.object,
     move: PropTypes.func.isRequired,
+    moves: PropTypes.array.isRequired,
+    loadMoves: PropTypes.func.isRequired,
     loadGame: PropTypes.func.isRequired,
     unloadGame: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     const { match, loadGame } = this.props;
-    loadGame(match.params.gameKey);
+    const { gameKey } = match.params;
+    loadGame(gameKey);
+    loadMoves(gameKey);
   }
 
   componentWillUnmount() {
@@ -26,12 +30,11 @@ class Game extends Component {
   }
 
   render() {
-    const { game, user, move } = this.props;
+    const { game, user, move, moves } = this.props;
     if(!game || !user) return null;
 
     const { uid } = user;
     const opponentId = Object.keys(game).filter(key => key !== uid)[0];
-    // const who = player => player === uid ? 'YOU' : 'THEM';
 
     const you = game[uid];
     const opponent = game[opponentId];
@@ -39,7 +42,6 @@ class Game extends Component {
     return (
       <section>
         <h2>Players</h2>
-        {/* <p>{you} VS. {opponent}</p> */}
 
         <div>
           <h3>You</h3>
@@ -49,21 +51,15 @@ class Game extends Component {
           <h3>Opponent</h3>
           <p>Wins: {opponent.wins}</p>
           <p>Troops: {opponent.troops}</p>
-          {/* {game.rounds && Object.keys(game.rounds).map((key, i) => {
-            const round = game.rounds[key];
-            return (
-              <li key={i}>
-                <ul>
-                  {round.moves.map(move => (
-                    <li key={move.uid}>{who(move.uid)}: {move.play}</li>
-                  ))}
-                  <li>Winner: {who(round.winner)}</li>
-                </ul>
-              </li>
-            );
-          })} */}
         </div>
 
+        <div>
+          {moves.map(move => (
+            <p
+              key={move}
+            >{move} has submitted</p>
+          ))}
+        </div>
         <p>
           {buildArray(you.troops).map(play => (
             <button
@@ -87,7 +83,8 @@ const buildArray = number => {
 export default connect(
   state => ({
     game: getGame(state),
-    user: getUser(state)
+    user: getUser(state),
+    moves: getMoves(state)
   }),
-  { loadGame, unloadGame, move }
+  { loadGame, unloadGame, loadMoves, move }
 )(Game);
