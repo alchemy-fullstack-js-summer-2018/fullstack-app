@@ -85,11 +85,18 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
 
         const player1 = game.moves[0];
         const player2 = game.moves[1];
-
+        
         game[player1.uid].troops -= player1.play;
         game[player2.uid].troops -= player2.play;
-      }
 
+      }
+      
+      if(game[player1.uid].wins === 2 || game[player2.uid].wins === 2) {
+        return Promise.all([
+          gameRef.remove(game)
+        ])
+      }
+      
       delete game.moves;
       return Promise.all([
         gameRef.set(game)
