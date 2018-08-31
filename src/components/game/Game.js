@@ -18,7 +18,7 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    const { match, loadGame } = this.props;
+    const { match, loadGame, loadMoves } = this.props;
     const { gameKey } = match.params;
     loadGame(gameKey);
     loadMoves(gameKey);
