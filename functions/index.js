@@ -89,13 +89,6 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
         game[player2.uid].troops -= player2.play;
 
       }
-
-      if(game[player1.uid].wins === 2 || game[player2.uid].wins === 2) {
-          return Promise.all([
-            gameRef.set(game),
-            gameRef.remove()
-          ]);
-      }
       
       delete game.moves;
       return Promise.all([
@@ -103,25 +96,29 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
       ]);
     });
 
-
-      
-
-        
-      
-
-
-
-
-      // const player1PointsRef = gameRef.child(moves[0].uid).child('points');
-
-
-      
-      
-      
-      
+      // const player1PointsRef = gameRef.child(moves[0].uid).child('points')   
       
 });
 
+exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot, context) => {
+
+  const { gameKey } = context.params;
+
+  const gameRef = gamesRef.child(gameKey);
+
+  return gameRef.on('value', snapshot => {
+      const game = snapshot.val();
+      const [ player1, player2 ] = Object.keys(game)
+      
+      if(game[player1].wins < 2 && game[player2].wins < 2) return;
+
+      const winner = game[player1].wins === 2 ? player1 : player2;
+      
+      return Promise.all([
+        gameRef.child('winner').set(winner)
+      ]);
+  });
+});
 
 const calculateWinner = ([a, b]) => {
 
