@@ -9,5 +9,12 @@ export function game(state = null, { type, payload }) {
 }
 
 export function moves(state = [], { type, payload }) {
-  return type === MOVE_LOAD ? payload : state;
+  switch(type) {
+    case MOVE_LOAD:
+      return payload;
+    case GAME_LOAD:
+      return [];
+    default:
+      return state;
+  }
 }
