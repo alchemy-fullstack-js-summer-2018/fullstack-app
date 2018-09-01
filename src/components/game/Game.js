@@ -67,14 +67,6 @@ class Game extends Component {
           opponent={opponent}
           selection={selection}
           moves={moves.includes(opponentId)}/>
-
-        <div>
-          {moves.map(move => (
-            <p
-              key={move}
-            >{move} has submitted</p>
-          ))}
-        </div>
         <Bidder troops={you.troops} onSelect={this.handleSelect} onSubmit={this.handleSubmit}/>
       </section>
     );

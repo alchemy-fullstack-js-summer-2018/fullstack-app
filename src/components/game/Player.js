@@ -5,7 +5,7 @@ class Player extends Component {
   static propTypes = {
     player: PropTypes.object.isRequired,
     selection: PropTypes.number,
-    moves: PropTypes.boolean
+    moves: PropTypes.bool
   };
 
   render() { 

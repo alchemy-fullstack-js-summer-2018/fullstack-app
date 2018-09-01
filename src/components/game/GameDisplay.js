@@ -7,7 +7,7 @@ class GameDisplay extends Component {
   static propTypes = {
     you: PropTypes.object.isRequired,
     opponent: PropTypes.object.isRequired,
-    moves: PropTypes.boolean,
+    moves: PropTypes.bool.isRequired,
     selection: PropTypes.number
   };
 
