@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userSignUp } from './actions';
+import PropTypes from 'prop-types';
 
 class Auth extends Component {
 
@@ -9,20 +12,24 @@ class Auth extends Component {
     matchingPassword: ''
   };
 
+  static propTypes = {
+    userSignUp: PropTypes.func.isRequired
+  }
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
   handleSubmit = event => {
+    const { userSignUp } = this.props;
     event.preventDefault();
     const { target: { elements } } = event;
-    const { name, email, password, matchingPassword } = elements;
-    console.log(
-      name.value,
-      email.value,
-      password.value,
-      matchingPassword.value
-    );
+    const { name, email, password } = elements;
+    userSignUp({
+      name: name.value,
+      email: email.value,
+      password: password.value,
+    });
     this.setState({ 
       name: '',
       email: '',
@@ -93,4 +100,7 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default connect(
+  null,
+  { userSignUp }
+)(Auth);
