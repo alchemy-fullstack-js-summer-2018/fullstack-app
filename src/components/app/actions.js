@@ -1,8 +1,14 @@
 import {  ERROR, ERROR_CLEAR, USER_LOAD, GAMES_LOAD, getUser } from './reducers';
 import { auth } from '../../services/firebase';
+import { signUp } from '../../services';
 import { playersRef, userGamesRef } from '../../services/firebaseRef';
 
 export const clearError = () => ({ type: ERROR_CLEAR });
+
+export const userSignUp = data => ({
+  type: USER_SIGNUP,
+  payload: signUp(data)
+});
 
 export const login = () => {
   return dispatch => {
