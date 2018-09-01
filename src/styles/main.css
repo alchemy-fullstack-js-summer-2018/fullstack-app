@@ -1,0 +1,19 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Metamorphous', cursive;
+}
+
+button {
+  font-family: 'Metamorphous', cursive;
+
+}
