@@ -6,6 +6,7 @@ import { login } from './actions';
 import Header from './Header';
 import Home from './Home';
 import Game from '../game/Game';
+import Auth from './Auth';
 // import styles from './App.css'
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/games/:gameKey" component={Game}/>
+              <Route exact path="/auth" component={Auth}/>
               <Redirect to="/"/>
             </Switch>
           </main>
