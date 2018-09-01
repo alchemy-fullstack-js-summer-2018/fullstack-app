@@ -12,11 +12,11 @@ import Auth from './Auth';
 class App extends Component {
 
   static propTypes = {
-    login: PropTypes.func.isRequired
+    login: PropTypes.func
   };
 
   componentDidMount() {
-    this.props.login();
+    // this.props.login();
   }
 
   render() { 

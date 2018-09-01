@@ -38,6 +38,8 @@ export function user(state = null, { type, payload }) {
   switch(type) {
     case USER_LOAD:
       return payload;
+    case USER_SIGNUP:
+      return payload;
     default:
       return state;
   }
