@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Error from './Error';
-// import styles from './Header.css';
+import styles from './Header.css';
 
 class Header extends Component {
 
@@ -11,7 +11,7 @@ class Header extends Component {
 
   render() { 
     return (
-      <div>
+      <div className={styles.header}>
         <section>
           <div>
             <h1>GORTS</h1>
@@ -20,6 +20,15 @@ class Header extends Component {
             <ul>
               <li>
                 <NavLink exact to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink exact to="/leaderboard">Leaderboard</NavLink>
+              </li>
+              <li>
+                <NavLink exact to="/players">Players</NavLink>
+              </li>
+              <li>
+                <NavLink exact to="/auth">Sign In</NavLink>
               </li>
             </ul>
           </nav>

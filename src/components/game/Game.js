@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import GameDisplay from './GameDisplay.js';
 import { connect } from 'react-redux';
 import { getGame, getMoves } from './reducers';
 import { getUser } from '../app/reducers';
@@ -41,17 +42,7 @@ class Game extends Component {
 
     return (
       <section>
-        <h2>Players</h2>
-
-        <div>
-          <h3>You</h3>
-          <p>Wins: {you.wins}</p>
-          <p>Troops: {you.troops}</p>
-
-          <h3>Opponent</h3>
-          <p>Wins: {opponent.wins}</p>
-          <p>Troops: {opponent.troops}</p>
-        </div>
+        <GameDisplay you={you} opponent={opponent} moves={moves}/>
 
         <div>
           {moves.map(move => (
