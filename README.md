@@ -1,3 +1,5 @@
+https://game-6c547.firebaseapp.com/
+
 # Gorts
 
 Gorts is a bidding game where players win by bidding higher than their opponent. The catch is, if the difference between the two bids is 4 or more, then lower bidder wins. Gorts was built using Google's Firebase, React, and Redux.
