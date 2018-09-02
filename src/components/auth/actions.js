@@ -20,7 +20,6 @@ const authChecked = () => ({ type: CHECKED_AUTH });
 
 export const tryLoadUser = () => dispatch => {
   const user = getStoredUser();
-  console.log('STORED USER', user);
   if(!user || !user.token) {
     return dispatch(authChecked());
   }

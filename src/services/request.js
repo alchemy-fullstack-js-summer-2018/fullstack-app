@@ -21,7 +21,6 @@ export const getStoredUser = () => {
     return JSON.parse(json)
   }
   catch(err) {
-    console.log('getstoreduser error');
     clearStoredUser();
   }
 };
@@ -47,7 +46,7 @@ const headers = {
   'content-type': 'application/json'
 };
 
-export const get = url => request(url);
+export const get = (url, options = {}) => request(url, { method: 'GET', ...options });
 export const post = (url, data) => request(url, { method: 'POST', headers }, data);
 export const put = (url, data) => request(url, { method: 'PUT', headers }, data);
 export const del = (url, data) => request(url, { method: 'DELETE' }, data);

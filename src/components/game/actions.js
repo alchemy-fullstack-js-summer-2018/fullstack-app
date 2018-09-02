@@ -8,7 +8,6 @@ export const loadGame = gameKey => {
     gamesRef.child(gameKey).on('value', snapshot => {
       const game = snapshot.val();
       game.key = gameKey;
-      console.log(game);
       if(game.winner) {
         dispatch({
           type: GAME_END,

@@ -12,10 +12,9 @@ export const signin = credentials => post(SIGNIN_URL, credentials);
 export const postMatch = data => post(MATCH_URL, data);
 
 export const verifyUser = token => {
-  console.log('TOKEN', token);
   return get(`${AUTH_URL}/verify`, {
     headers: {
-      authorization: token
+      Authorization: token
     }
   });
 };

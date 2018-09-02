@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getUser } from '../auth/reducers';
+import { logout } from '../auth/actions';
 import { NavLink } from 'react-router-dom';
 import Error from './Error';
 import styles from './Header.css';
 
 class Header extends Component {
 
-  // static propTypes = {
+  static propTypes = {
+    user: PropTypes.object,
+    logout: PropTypes.func.isRequired
+  };
 
-  // };
+ 
 
   render() { 
+    const { user, logout } = this.props;
+
     return (
       <div className={styles.header}>
         <section>
@@ -28,10 +37,14 @@ class Header extends Component {
                 <NavLink exact to="/players">Players</NavLink>
               </li>
               <li>
-                <NavLink exact to="/auth">Sign In</NavLink>
+                { user
+                  ? <NavLink to="/" onClick={logout}>Logout</NavLink>
+                  : <NavLink to="/auth">Login</NavLink>
+                }
               </li>
             </ul>
           </nav>
+          {user && <span>Logged in as {user.profile.name}</span>}
         </section>
 
         <Error/>
@@ -40,4 +53,7 @@ class Header extends Component {
   }
 }
  
-export default Header;
+export default connect(
+  state => ({ user: getUser(state) }),
+  { logout }
+)(Header);
