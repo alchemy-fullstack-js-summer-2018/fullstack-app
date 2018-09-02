@@ -11,7 +11,7 @@ export class Home extends Component {
     user: PropTypes.object,
     games: PropTypes.array.isRequired,
     requestGame: PropTypes.func.isRequired
-  }
+  };
 
   render() { 
     const { user, games, requestGame } = this.props;
