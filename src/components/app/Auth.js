@@ -14,7 +14,7 @@ class Auth extends Component {
 
   static propTypes = {
     userSignUp: PropTypes.func.isRequired
-  }
+  };
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
