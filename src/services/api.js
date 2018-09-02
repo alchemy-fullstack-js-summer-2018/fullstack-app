@@ -6,8 +6,8 @@ const MATCH_URL = `${URL}/matches`;
 const SIGNUP_URL = `${AUTH_URL}/signup`;
 const SIGNIN_URL = `${AUTH_URL}/signin`;
 
-export const signUp = credentials => post(SIGNUP_URL, credentials);
-export const signIn = credentials => post(SIGNIN_URL, credentials);
+export const signup = credentials => post(SIGNUP_URL, credentials);
+export const signin = credentials => post(SIGNIN_URL, credentials);
 
 export const postMatch = data => post(MATCH_URL, data);
 

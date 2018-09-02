@@ -18,6 +18,7 @@ class Auth extends PureComponent {
   render() { 
     const { user, signin, signup, location } = this.props;
     console.log(location);
+    console.log('user', user);
     const redirect = location.state ? location.state.from : '/';
     console.log('redirect is', redirect);
     if(user) return <Redirect to={redirect}/>;
