@@ -9,9 +9,18 @@ export class Home extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    games: PropTypes.array.isRequired,
-    requestGame: PropTypes.func.isRequired
+    games: PropTypes.string,
+    requestGame: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
   };
+
+  componentDidUpdate() {
+    const { games, history } = this.props;
+    if(!games) return;
+    history.push({
+      pathname: `/games/${games}`
+    });
+  }
 
   render() { 
     const { user, games, requestGame } = this.props;
@@ -37,18 +46,12 @@ export const UserGames = ({ onRequest, games }) => {
   return (
     <section>
       <button onClick={onRequest}>ENGAGE IN GORTS</button>
-      <ul>
-        {games.map((gameKey, i) => (
-          <li key={gameKey}>
-            <Link to={`games/${gameKey}`}>Game {i + 1}</Link>
-          </li>
-        ))}
-      </ul>
+      <h1>{games}</h1>
     </section>
   );
 };
 
 UserGames.propTypes = {
-  games: PropTypes.array.isRequired,
+  games: PropTypes.string.isRequired,
   onRequest: PropTypes.func.isRequired
 };

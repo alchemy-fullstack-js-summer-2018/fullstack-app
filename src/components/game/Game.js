@@ -23,12 +23,13 @@ class Game extends Component {
     moves: PropTypes.array.isRequired,
     loadMoves: PropTypes.func.isRequired,
     loadGame: PropTypes.func.isRequired,
-    unloadGame: PropTypes.func.isRequired
+    unloadGame: PropTypes.func
   };
 
   componentDidMount() {
     const { match, loadGame, loadMoves } = this.props;
     const { gameKey } = match.params;
+    console.log('IN GAME COMPONENT', gameKey);
     loadGame(gameKey);
     loadMoves(gameKey);
   }
@@ -53,7 +54,7 @@ class Game extends Component {
     const { selection } = this.state;
     if(!game || !user) return null;
 
-    const { uid } = user;
+    const uid = user.profile._id;
     const opponentId = Object.keys(game).filter(key => key !== uid)[0];
 
     const you = game[uid];
