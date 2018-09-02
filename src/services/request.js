@@ -1,4 +1,4 @@
-import store from'../store/store';
+import store from '../store/store';
 import { getUser } from '../components/auth/reducers';
 
 let token = '';
@@ -21,6 +21,7 @@ export const getStoredUser = () => {
     return JSON.parse(json)
   }
   catch(err) {
+    console.log('getstoreduser error');
     clearStoredUser();
   }
 };
@@ -29,6 +30,10 @@ export const clearStoredUser = () => storage.removeItem(key);
 
 function request(url, options = {}, data) {
   if(data) options.body = JSON.stringify(data);
+  if(token) {
+    if(!options.header) options.headers = {}
+    options.headers.Authorization = token;
+  }
 
   return fetch(url, options)
     .then(response => [response.ok, response.json()])

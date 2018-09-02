@@ -15,7 +15,7 @@ export const verifyUser = token => {
   console.log('TOKEN', token);
   return get(`${AUTH_URL}/verify`, {
     headers: {
-      Authorization: token
+      authorization: token
     }
   });
 };
