@@ -10,9 +10,18 @@ class Credentials extends PureComponent {
   };
 
   static propTypes = {
-    submit: PropTypes.func.inRequired,
+    submit: PropTypes.func.isRequired,
     action: PropTypes.string.isRequired,
     allowName: PropTypes.bool
+  };
+
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.submit(this.state);
   };
 
   render() { 
