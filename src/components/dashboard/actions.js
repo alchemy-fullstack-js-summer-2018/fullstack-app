@@ -2,13 +2,6 @@ import {  ERROR, ERROR_CLEAR, GAMES_LOAD, getUser } from './reducers';
 import { signUp } from '../../services/api.js';
 import { playersRef, userGamesRef } from '../../services/firebaseRef';
 
-export const clearError = () => ({ type: ERROR_CLEAR });
-
-// export const userSignUp = data => ({
-//   type: USER_SIGNUP,
-//   payload: signUp(data)
-// });
-
 export const requestGame = () => {
   return (dispatch, getState) => {
     const user = getUser(getState());
@@ -30,31 +23,3 @@ export const requestGame = () => {
       });
   };
 };
-
-
-// export const login = () => {
-//   return dispatch => {
-//     auth.onAuthStateChanged(user => {
-//       if(user) {
-//         dispatch({
-//           type: USER_LOAD,
-//           payload: user
-//         });
-// 
-// export const loadGames = user => {
-//   return dispatch => {
-
-
-//       } else {
-//         auth.signInAnonymously()
-//           .catch(err => {
-//             dispatch({
-//               type: ERROR,
-//               payload: err.message
-//             });
-//           });
-//       }
-//     });
-//   };
-// };
-

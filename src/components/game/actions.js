@@ -22,14 +22,6 @@ export const loadGame = gameKey => {
   };
 };
 
-// export const unloadGame = gameKey => {
-//   gamesRef.child(gameKey).off('value');
-//   return {
-//     type: GAME_LOAD,
-//     payload: null
-//   };
-// };
-
 export const loadMoves = gameKey => {
   return dispatch => {
     movesRef.child(gameKey).on('value', snapshot => {

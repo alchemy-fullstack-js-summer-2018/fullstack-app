@@ -23,13 +23,15 @@ class Header extends Component {
       <div className={styles.header}>
         <section>
           <div>
-            <h1>GORTS</h1>
+            <h1><NavLink exact to="/">Gorts</NavLink></h1>
           </div>
           <nav>
             <ul>
-              <li>
-                <NavLink exact to="/">Home</NavLink>
-              </li>
+              { user &&
+                <li>
+                  <NavLink exact to="/dashboard">Play</NavLink>
+                </li>
+              }
               <li>
                 <NavLink exact to="/leaderboard">Leaderboard</NavLink>
               </li>

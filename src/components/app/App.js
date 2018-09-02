@@ -9,6 +9,7 @@ import Header from './Header';
 import Home from './Home';
 import Game from '../game/Game';
 import Auth from '../auth/Auth';
+import Dashboard from '../dashboard/Dashboard';
 // import styles from './App.css'
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/auth" component={Auth}/>
+                <Route exact path="/dashboard" component={Dashboard}/>
                 <Route exact path="/leaderboard" component={Home}/>
 
                 <PrivateRoute path="/games/:gameKey" component={Game}/>

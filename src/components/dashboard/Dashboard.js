@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getUser, getGames } from './reducers';
 import { requestGame } from './actions';
-import styles from './Home.css';
 
 export class Home extends Component {
 
@@ -27,17 +25,9 @@ export class Home extends Component {
     const { user, games, requestGame } = this.props;
 
     return (
-      <div className={styles.home}>
-        <h1>GORTS</h1>
-        <section>
-          <h3>How to Play:</h3>
-          <p>You and your opponent choose how many troops to send to battle. </p>
-          <ul>
-            <li><strong>Stalemate:</strong> on a tie.</li>
-            <li><strong>Guerilla Warfare:</strong>  Lower number wins if the difference is greater than 3.</li>
-            <li><strong>Outnumbered:</strong> Higher number wins, otherwise.</li>
-          </ul>
-        </section>
+      <div>
+        <h2>EXPERIENCE GORTS MORTAL</h2>
+        {user && <UserGames games={games} onRequest={requestGame}/>}
       </div>
     );
   }
