@@ -45,6 +45,6 @@ export function user(state = null, { type, payload }) {
   }
 }
 
-export function games(state = [], { type, payload }) {
+export function games(state = '', { type, payload }) {
   return type === GAMES_LOAD ? payload : state;
 }
