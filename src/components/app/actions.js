@@ -43,7 +43,7 @@ export const userSignUp = data => ({
 export const requestGame = () => {
   return (dispatch, getState) => {
     const user = getUser(getState());
-    playersRef.child(user.uid)
+    playersRef.child(user.profile._id)
       .set(true)
       .catch(err => {
         dispatch({

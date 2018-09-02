@@ -94,10 +94,7 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
       return Promise.all([
         gameRef.set(game)
       ]);
-    });
-
-      // const player1PointsRef = gameRef.child(moves[0].uid).child('points')   
-      
+    });      
 });
 
 exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot, context) => {
@@ -108,7 +105,7 @@ exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot,
 
   return gameRef.on('value', snapshot => {
       const game = snapshot.val();
-      const [ player1, player2 ] = Object.keys(game)
+      const [ player1, player2 ] = Object.keys(game);
       
       if(game[player1].wins < 2 && game[player2].wins < 2) return;
 
