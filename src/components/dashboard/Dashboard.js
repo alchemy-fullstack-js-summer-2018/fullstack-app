@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PlayerDisplay from './PlayerDisplay';
 import { connect } from 'react-redux';
-import { getUser, getGames } from './reducers';
+import { getGames } from './reducers';
+import { getUser } from '../app/reducers';
 import { requestGame } from './actions';
 
-export class Home extends Component {
+export class Dashboard extends Component {
 
   static propTypes = {
     user: PropTypes.object,
@@ -26,7 +28,7 @@ export class Home extends Component {
 
     return (
       <div>
-        <h2>EXPERIENCE GORTS MORTAL</h2>
+        <PlayerDisplay profile={user.profile}/>
         {user && <UserGames games={games} onRequest={requestGame}/>}
       </div>
     );
@@ -39,7 +41,7 @@ export default connect(
     games: getGames(state)
   }),
   { requestGame }
-)(Home);
+)(Dashboard);
 
 export const UserGames = ({ onRequest, games }) => {
   return (
