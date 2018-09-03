@@ -1,4 +1,4 @@
-import { get, post, del } from './request';
+import { get, post } from './request';
 
 const URL = '/api';
 const AUTH_URL = `${URL}/auth`;
@@ -16,7 +16,6 @@ export const postMatch = game => {
     players,
     game
   };
-  console.log(data);
   post(MATCH_URL, data);
 };
 

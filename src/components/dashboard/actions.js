@@ -1,4 +1,6 @@
-import {  ERROR, GAMES_LOAD, getUser } from './reducers';
+import { ERROR } from '../app/reducers';
+import { getUser } from '../auth/reducers';
+import { GAMES_LOAD } from './reducers';
 import { playersRef, userGamesRef } from '../../services/firebaseRef';
 
 export const requestGame = () => {

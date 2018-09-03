@@ -24,12 +24,12 @@ export class Dashboard extends Component {
   }
 
   render() { 
-    const { user, games, requestGame } = this.props;
+    const { user, requestGame } = this.props;
 
     return (
       <div>
         <PlayerDisplay profile={user.profile}/>
-        {user && <UserGames games={games} onRequest={requestGame}/>}
+        {user && <button onClick={requestGame}>PLAY GORTS</button>}
       </div>
     );
   }
@@ -42,17 +42,3 @@ export default connect(
   }),
   { requestGame }
 )(Dashboard);
-
-export const UserGames = ({ onRequest, games }) => {
-  return (
-    <section>
-      <button onClick={onRequest}>ENGAGE IN GORTS</button>
-      <h1>{games}</h1>
-    </section>
-  );
-};
-
-UserGames.propTypes = {
-  games: PropTypes.string,
-  onRequest: PropTypes.func.isRequired
-};
