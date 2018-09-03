@@ -4,20 +4,24 @@ import { gamesRef, movesRef } from '../../services/firebaseRef';
 import { postMatch } from '../../services/api';
 
 export const loadGame = gameKey => {
-  return dispatch => {
+  return (dispatch, getState) => {
     gamesRef.child(gameKey).on('value', snapshot => {
       const game = snapshot.val();
       game.key = gameKey;
       if(game.winner) {
+        const { profile: _id } = getUser(getState());
+        console.log('ID', _id);
         dispatch({
           type: GAME_END,
-          payload: postMatch(game)
+          payload: game.winner === _id ? postMatch(game) : null
         });
       }
-      dispatch({
-        type: GAME_LOAD,
-        payload: game
-      });
+      else {
+        dispatch({
+          type: GAME_LOAD,
+          payload: game
+        });
+      }
     });
   };
 };

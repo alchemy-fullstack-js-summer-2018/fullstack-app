@@ -9,10 +9,12 @@ export const requestGame = () => {
       .set(true)
       .then(() => {
         userGamesRef.child(profileId).on('value', snapshot => {
-          dispatch({
-            type: GAMES_LOAD,
-            payload: Object.keys(snapshot.val())[0]
-          });
+          if(snapshot.val()) {
+            dispatch({
+              type: GAMES_LOAD,
+              payload: Object.keys(snapshot.val())[0]
+            });
+          }
         });
       })
       .catch(err => {

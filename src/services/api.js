@@ -9,7 +9,11 @@ const SIGNIN_URL = `${AUTH_URL}/signin`;
 export const signup = credentials => post(SIGNUP_URL, credentials);
 export const signin = credentials => post(SIGNIN_URL, credentials);
 
-export const postMatch = data => post(MATCH_URL, data);
+export const postMatch = data => {
+  data.players = Object.keys(data).filter(key => key !== 'winner');
+  console.log(data);
+  post(MATCH_URL, data);
+};
 
 export const verifyUser = token => {
   return get(`${AUTH_URL}/verify`, {
