@@ -9,8 +9,13 @@ const SIGNIN_URL = `${AUTH_URL}/signin`;
 export const signup = credentials => post(SIGNUP_URL, credentials);
 export const signin = credentials => post(SIGNIN_URL, credentials);
 
-export const postMatch = data => {
-  data.players = Object.keys(data).filter(key => key !== 'winner');
+export const postMatch = game => {
+  delete game.key;
+  const players = Object.keys(game).filter(key => key !== 'winner');
+  const data = {
+    players,
+    game
+  };
   console.log(data);
   post(MATCH_URL, data);
 };
