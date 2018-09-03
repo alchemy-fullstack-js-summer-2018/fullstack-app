@@ -1,3 +1,5 @@
+import { GAME_END } from "../game/reducers";
+
 export const ERROR = 'ERROR';
 export const ERROR_CLEAR = 'ERROR_CLEAR';
 export const LOAD_START = 'LOAD_START';
@@ -46,5 +48,12 @@ export function loading(state = false, { type }) {
 // }
 
 export function games(state = '', { type, payload }) {
-  return type === GAMES_LOAD ? payload : state;
+  switch(type) {
+    case GAMES_LOAD:
+      return payload;
+    case GAME_END:
+      return '';
+    default:
+      return state;
+  }
 }
