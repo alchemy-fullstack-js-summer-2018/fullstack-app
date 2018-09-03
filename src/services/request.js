@@ -18,7 +18,7 @@ store.subscribe(() => {
 export const getStoredUser = () => {
   const json = storage.getItem(key);
   try {
-    return JSON.parse(json)
+    return JSON.parse(json);
   }
   catch(err) {
     clearStoredUser();
@@ -30,7 +30,7 @@ export const clearStoredUser = () => storage.removeItem(key);
 function request(url, options = {}, data) {
   if(data) options.body = JSON.stringify(data);
   if(token) {
-    if(!options.header) options.headers = {}
+    if(!options.header) options.headers = {};
     options.headers.Authorization = token;
   }
 
@@ -50,5 +50,3 @@ export const get = (url, options = {}) => request(url, { method: 'GET', ...optio
 export const post = (url, data) => request(url, { method: 'POST', headers }, data);
 export const put = (url, data) => request(url, { method: 'PUT', headers }, data);
 export const del = (url, data) => request(url, { method: 'DELETE' }, data);
-
-// dummy commit for dev

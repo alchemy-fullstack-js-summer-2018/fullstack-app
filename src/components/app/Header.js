@@ -23,7 +23,7 @@ class Header extends Component {
       <div className={styles.header}>
         <section>
           <div>
-            <h1><NavLink exact to="/">Gorts</NavLink></h1>
+            <h1><NavLink exact to="/">GORTS</NavLink></h1>
           </div>
           <nav>
             <ul>

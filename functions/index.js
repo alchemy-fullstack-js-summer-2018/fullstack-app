@@ -91,9 +91,9 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
       }
       
       delete game.moves;
-      return Promise.all([
+      return new Promise(
         gameRef.set(game)
-      ]);
+      );
     });      
 });
 
@@ -111,9 +111,9 @@ exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot,
 
       const winner = game[player1].wins === 2 ? player1 : player2;
       
-      return Promise.all([
+      return new Promise(
         gameRef.child('winner').set(winner)
-      ]);
+      );
   });
 });
 

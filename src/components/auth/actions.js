@@ -30,7 +30,6 @@ export const tryLoadUser = () => dispatch => {
       payload: user
     }))
     .catch(() => {
-      console.log('CLEARING USER', user.token);
       clearStoredUser();
     })
     .then(() => {
