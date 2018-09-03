@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlayerDisplay from './PlayerDisplay';
 import { connect } from 'react-redux';
 import { getGames } from './reducers';
-import { getUser } from '../app/reducers';
+import { getUser } from '../auth/reducers';
 import { requestGame } from './actions';
 
 export class Dashboard extends Component {
