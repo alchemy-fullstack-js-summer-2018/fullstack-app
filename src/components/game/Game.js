@@ -23,7 +23,8 @@ class Game extends Component {
     moves: PropTypes.array.isRequired,
     loadMoves: PropTypes.func.isRequired,
     loadGame: PropTypes.func.isRequired,
-    unloadGame: PropTypes.func
+    unloadGame: PropTypes.func,
+    history: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -31,6 +32,14 @@ class Game extends Component {
     const { gameKey } = match.params;
     loadGame(gameKey);
     loadMoves(gameKey);
+  }
+
+  componentDidUpdate() {
+    const { game, history } = this.props;
+    if(game !== false) return;
+    history.push({
+      pathname: '/dashboard'
+    });
   }
 
   componentWillUnmount() {
