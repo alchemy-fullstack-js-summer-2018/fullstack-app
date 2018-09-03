@@ -30,10 +30,10 @@ export const clearStoredUser = () => storage.removeItem(key);
 function request(url, options = {}, data) {
   if(data) options.body = JSON.stringify(data);
   if(token) {
-    if(!options.header) options.headers = {};
+    if(!options.headers) options.headers = {};
     options.headers.Authorization = token;
   }
-
+  console.log(options);
   return fetch(url, options)
     .then(response => [response.ok, response.json()])
     .then(([ok, json]) => {

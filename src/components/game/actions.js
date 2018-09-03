@@ -10,11 +10,12 @@ export const loadGame = gameKey => {
       game.key = gameKey;
       if(game.winner) {
         const { profile } = getUser(getState());
-        console.log('PROFILE', profile);
         dispatch({
           type: GAME_END,
           payload: game.winner === profile._id ? postMatch(game) : null
         });
+        gamesRef.child(gameKey).remove();
+        gamesRef.child(gameKey).off('value');
       }
       else {
         dispatch({
