@@ -22,10 +22,18 @@ export const loadGame = gameKey => {
   };
 };
 
+export const unloadGame = gameKey => {
+  gamesRef.child(gameKey).off('value');
+  return {
+    type: GAME_END,
+    payload: null
+  };
+};
+
 export const loadMoves = gameKey => {
   return dispatch => {
     movesRef.child(gameKey).on('value', snapshot => {
-      const moves = Object.keys(snapshot.val());
+      const moves = Object.keys(snapshot.val() || []);
 
       dispatch({
         type: MOVE_LOAD,
@@ -40,6 +48,6 @@ export const move = play => {
     const state = getState();
     const game = getGame(state);
     const user = getUser(state);
-    movesRef.child(game.key).child(user.uid).set(play);
+    movesRef.child(game.key).child(user.profile._id).set(play);
   };
 };
