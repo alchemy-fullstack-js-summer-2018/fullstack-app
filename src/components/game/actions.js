@@ -9,11 +9,11 @@ export const loadGame = gameKey => {
       const game = snapshot.val();
       game.key = gameKey;
       if(game.winner) {
-        const { profile: _id } = getUser(getState());
-        console.log('ID', _id);
+        const { profile } = getUser(getState());
+        console.log('PROFILE', profile);
         dispatch({
           type: GAME_END,
-          payload: game.winner === _id ? postMatch(game) : null
+          payload: game.winner === profile._id ? postMatch(game) : null
         });
       }
       else {
