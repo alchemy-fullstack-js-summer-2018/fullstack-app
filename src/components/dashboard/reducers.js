@@ -6,7 +6,7 @@ export const LEADERS_LOAD = 'LEADERS_LOAD';
 
 export const getGames = state => state.games;
 export const getStats = state => state.stats;
-export const getLeaderboard = state => state.leaders;
+export const getLeaders = state => state.leaders;
 
 export function games(state = '', { type, payload }) {
   switch(type) {
