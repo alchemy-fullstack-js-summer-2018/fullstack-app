@@ -17,7 +17,7 @@ class Player extends Component {
     const { wins, troops } = player;
 
     return (
-      <div className={styles.player}>
+      <section className={styles.player}>
         <section className="name-area">
           <h3>{isYou ? 'You' : 'Opponent'}</h3>
           <span>{buildArray(wins)
@@ -41,7 +41,7 @@ class Player extends Component {
           )
         }</p>
         
-      </div>
+      </section>
     );
   }
 }
