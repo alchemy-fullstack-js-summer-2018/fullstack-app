@@ -1,7 +1,5 @@
 :local(.game) {
   height: 800px;
-  /* background: url('../../assets/background.jpg'); */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: linear-gradient(grey, darkblue);
+
 }
