@@ -1,9 +1,15 @@
 :local(.header) {
-
+  border-bottom: 2px solid green;
+  
   section {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     height: 100px;
+  }
+
+  span {
+    font-size: .5em;
+    text-align: right;
   }
   ul {
     padding: 0;
@@ -12,6 +18,7 @@
     justify-content: space-around;
     align-items: center;
   }
+
   li {
     list-style-type: none;
   }

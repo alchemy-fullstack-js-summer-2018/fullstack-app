@@ -91,13 +91,10 @@ exports.gameLogic = functions.database.ref('/games/{gameKey}/moves').onCreate((s
       }
       
       delete game.moves;
-      return Promise.all([
+      return new Promise(
         gameRef.set(game)
-      ]);
-    });
-
-      // const player1PointsRef = gameRef.child(moves[0].uid).child('points')   
-      
+      );
+    });      
 });
 
 exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot, context) => {
@@ -108,15 +105,15 @@ exports.endGame = functions.database.ref('/moves/{gameKey}').onCreate((snapshot,
 
   return gameRef.on('value', snapshot => {
       const game = snapshot.val();
-      const [ player1, player2 ] = Object.keys(game)
+      const [ player1, player2 ] = Object.keys(game);
       
       if(game[player1].wins < 2 && game[player2].wins < 2) return;
 
       const winner = game[player1].wins === 2 ? player1 : player2;
       
-      return Promise.all([
+      return new Promise(
         gameRef.child('winner').set(winner)
-      ]);
+      );
   });
 });
 

@@ -7,16 +7,17 @@ class GameDisplay extends Component {
   static propTypes = {
     you: PropTypes.object.isRequired,
     opponent: PropTypes.object.isRequired,
-    moves: PropTypes.array
+    moves: PropTypes.bool.isRequired,
+    selection: PropTypes.number
   };
 
   render() { 
-    const { you, opponent, moves } = this.props;
+    const { you, opponent, moves, selection } = this.props;
 
     return (
       <div className={styles.gameDisplay}>
-        <Player player={you}/>
-        <Player player={opponent}/>
+        <Player player={you} isYou={true} selection={selection}/>
+        <Player player={opponent} isYou={false} moves={moves}/>
       </div>
     );
   }

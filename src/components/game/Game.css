@@ -1,0 +1,5 @@
+:local(.game) {
+  height: 800px;
+  background-image: linear-gradient(grey, darkblue);
+
+}

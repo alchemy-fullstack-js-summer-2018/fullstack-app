@@ -1,17 +1,28 @@
-import { GAME_LOAD, MOVE_LOAD, getGame } from './reducers';
-import { getUser } from '../app/reducers';
+import { GAME_LOAD, MOVE_LOAD, GAME_END, getGame } from './reducers';
+import { getUser } from '../auth/reducers';
 import { gamesRef, movesRef } from '../../services/firebaseRef';
+import { postMatch } from '../../services/api';
 
 export const loadGame = gameKey => {
-  return dispatch => {
+  return (dispatch, getState) => {
     gamesRef.child(gameKey).on('value', snapshot => {
       const game = snapshot.val();
       game.key = gameKey;
-
-      dispatch({
-        type: GAME_LOAD,
-        payload: game
-      });
+      if(game.winner) {
+        const { profile } = getUser(getState());
+        dispatch({
+          type: GAME_END,
+          payload: game.winner === profile._id ? postMatch(game) : null
+        });
+        gamesRef.child(gameKey).remove();
+        gamesRef.child(gameKey).off('value');
+      }
+      else {
+        dispatch({
+          type: GAME_LOAD,
+          payload: game
+        });
+      }
     });
   };
 };
@@ -19,7 +30,7 @@ export const loadGame = gameKey => {
 export const unloadGame = gameKey => {
   gamesRef.child(gameKey).off('value');
   return {
-    type: GAME_LOAD,
+    type: GAME_END,
     payload: null
   };
 };
@@ -27,7 +38,7 @@ export const unloadGame = gameKey => {
 export const loadMoves = gameKey => {
   return dispatch => {
     movesRef.child(gameKey).on('value', snapshot => {
-      const moves = Object.keys(snapshot.val());
+      const moves = Object.keys(snapshot.val() || []);
 
       dispatch({
         type: MOVE_LOAD,
@@ -42,6 +53,6 @@ export const move = play => {
     const state = getState();
     const game = getGame(state);
     const user = getUser(state);
-    movesRef.child(game.key).child(user.uid).set(play);
+    movesRef.child(game.key).child(user.profile._id).set(play);
   };
 };

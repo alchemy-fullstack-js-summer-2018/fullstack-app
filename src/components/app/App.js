@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import { connect } from 'react-redux';
-import { login } from './actions';
+import { tryLoadUser } from '../auth/actions';
+import { getCheckedAuth } from '../auth/reducers';
 import Header from './Header';
 import Home from './Home';
 import Game from '../game/Game';
+import Auth from '../auth/Auth';
+import Dashboard from '../dashboard/Dashboard';
 // import styles from './App.css'
 
 class App extends Component {
 
   static propTypes = {
-    login: PropTypes.func.isRequired
+    tryLoadUser: PropTypes.func.isRequired,
+    checkedAuth: PropTypes.bool.isRequired
   };
 
   componentDidMount() {
-    this.props.login();
+    this.props.tryLoadUser();
   }
 
   render() { 
+    const { checkedAuth } = this.props;
+
     return (
       <Router>
         <div>
@@ -27,11 +34,17 @@ class App extends Component {
           </header>
 
           <main>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/games/:gameKey" component={Game}/>
-              <Redirect to="/"/>
-            </Switch>
+            {checkedAuth &&
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/auth" component={Auth}/>
+                <Route exact path="/dashboard" component={Dashboard}/>
+                <Route exact path="/leaderboard" component={Home}/>
+
+                <PrivateRoute path="/games/:gameKey" component={Game}/>
+                <Redirect to="/"/>
+              </Switch>
+            }
           </main>
         </div>
       </Router>
@@ -40,6 +53,6 @@ class App extends Component {
 }
  
 export default connect(
-  null,
-  { login }
+  state => ({ checkedAuth: getCheckedAuth(state) }),
+  { tryLoadUser }
 )(App);

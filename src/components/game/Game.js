@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import GameDisplay from './GameDisplay.js';
+import Bidder from './Bidder.js';
 import { connect } from 'react-redux';
 import { getGame, getMoves } from './reducers';
-import { getUser } from '../app/reducers';
+import { getUser } from '../auth/reducers';
 import { loadGame, unloadGame, loadMoves, move } from './actions';
+import styles from './Game.css';
 
 class Game extends Component {
+
+  state = {
+    selection: null,
+    opponentHasBid: false
+  };
+
   static propTypes = {
     match: PropTypes.object,
     game: PropTypes.object,
@@ -14,7 +23,8 @@ class Game extends Component {
     moves: PropTypes.array.isRequired,
     loadMoves: PropTypes.func.isRequired,
     loadGame: PropTypes.func.isRequired,
-    unloadGame: PropTypes.func.isRequired
+    unloadGame: PropTypes.func,
+    history: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -24,62 +34,54 @@ class Game extends Component {
     loadMoves(gameKey);
   }
 
+  componentDidUpdate() {
+    const { game, history } = this.props;
+    if(game !== null) return;
+    history.push({
+      pathname: '/dashboard'
+    });
+  }
+
   componentWillUnmount() {
     const { match, unloadGame } = this.props;
     unloadGame(match.params.gameKey);
   }
 
+  handleSelect = selection => {
+    this.setState({ selection });
+  };
+
+  handleSubmit = () => {
+    const { move } = this.props;
+    const { selection } = this.state;
+    move(selection);
+  };
+
   render() {
-    const { game, user, move, moves } = this.props;
+    const { game, user, moves } = this.props;
+    const { selection } = this.state;
     if(!game || !user) return null;
 
-    const { uid } = user;
+    const uid = user.profile._id;
     const opponentId = Object.keys(game).filter(key => key !== uid)[0];
 
     const you = game[uid];
     const opponent = game[opponentId];
+    opponent.uid = opponentId;
 
     return (
-      <section>
-        <h2>Players</h2>
-
-        <div>
-          <h3>You</h3>
-          <p>Wins: {you.wins}</p>
-          <p>Troops: {you.troops}</p>
-
-          <h3>Opponent</h3>
-          <p>Wins: {opponent.wins}</p>
-          <p>Troops: {opponent.troops}</p>
-        </div>
-
-        <div>
-          {moves.map(move => (
-            <p
-              key={move}
-            >{move} has submitted</p>
-          ))}
-        </div>
-        <p>
-          {buildArray(you.troops).map(play => (
-            <button
-              key={play}
-              onClick={() => move(play)}>{play}</button>
-          ))}
-        </p>
+      <section className={styles.game}>
+        <GameDisplay
+          you={you}
+          opponent={opponent}
+          selection={selection}
+          moves={moves.includes(opponentId)}/>
+        <Bidder troops={you.troops} onSelect={this.handleSelect} onSubmit={this.handleSubmit}/>
       </section>
     );
   }
 }
 
-const buildArray = number => {
-  let arr = [];
-  for(let i = 0; i <= number; i++) {
-    arr.push(i);
-  }
-  return arr;
-};
- 
 export default connect(
   state => ({
     game: getGame(state),
