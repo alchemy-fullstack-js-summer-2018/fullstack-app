@@ -1,7 +1,11 @@
 html {
   height: 100%;
   background-image: linear-gradient( #323643, #606470);
-
+  background-image: url('../assets/battlefield.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
