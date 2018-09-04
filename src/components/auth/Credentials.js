@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../shared/FormControl';
+import styles from './Credentials.css';
 
 class Credentials extends PureComponent {
   state = { 
     name: '',
     email: '',
-    password: ''
+    password: '',
+    matchPassword: ''
   };
 
   static propTypes = {
@@ -26,24 +28,27 @@ class Credentials extends PureComponent {
 
   render() { 
     const { action, allowName = false } = this.props;
-    const { name, email, password } = this.state;
+    const { name, email, password, matchPassword } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.credentials}>
         { allowName &&
-          <FormControl label="name">
+          <FormControl label="Name">
             <input name="name" value={name} onChange={this.handleChange}/>
           </FormControl>
         }
-        <FormControl label="email">
+        <FormControl label="Email">
           <input name="email" value={email} onChange={this.handleChange}/>
         </FormControl>
-        <FormControl label="password">
+        <FormControl label="Password">
           <input name="password" type="password" value={password} onChange={this.handleChange}/>
         </FormControl>
 
-        <FormControl label="password">
-          <button>{action}</button>
-        </FormControl>
+        { allowName &&
+          <FormControl label="Retype Password">
+            <input name="matchPassword" value={matchPassword} onChange={this.handleChange}></input>
+          </FormControl>
+        }
+        <button>{action}</button>
       </form>
     );
   }
