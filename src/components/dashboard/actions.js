@@ -1,5 +1,8 @@
-import {  ERROR, GAMES_LOAD, getUser } from './reducers';
+import { ERROR } from '../app/reducers';
+import { getUser } from '../auth/reducers';
+import { GAMES_LOAD, STATS_LOAD } from './reducers';
 import { playersRef, userGamesRef } from '../../services/firebaseRef';
+import { getStatsById as _getStats } from '../../services/api';
 
 export const requestGame = () => {
   return (dispatch, getState) => {
@@ -25,3 +28,8 @@ export const requestGame = () => {
       });
   };
 };
+
+export const getStatsById = id => ({
+  type: STATS_LOAD,
+  payload: _getStats(id)
+});

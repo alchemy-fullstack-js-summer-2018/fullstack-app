@@ -1,5 +1,5 @@
 import { GAME_LOAD, MOVE_LOAD, GAME_END, getGame } from './reducers';
-import { getUser } from '../app/reducers';
+import { getUser } from '../auth/reducers';
 import { gamesRef, movesRef } from '../../services/firebaseRef';
 import { postMatch } from '../../services/api';
 
