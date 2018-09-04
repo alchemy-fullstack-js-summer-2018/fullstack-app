@@ -4,7 +4,7 @@ import GameDisplay from './GameDisplay.js';
 import Bidder from './Bidder.js';
 import { connect } from 'react-redux';
 import { getGame, getMoves } from './reducers';
-import { getUser } from '../app/reducers';
+import { getUser } from '../auth/reducers';
 import { loadGame, unloadGame, loadMoves, move } from './actions';
 import styles from './Game.css';
 
@@ -36,7 +36,7 @@ class Game extends Component {
 
   componentDidUpdate() {
     const { game, history } = this.props;
-    if(game !== false) return;
+    if(game !== null) return;
     history.push({
       pathname: '/dashboard'
     });

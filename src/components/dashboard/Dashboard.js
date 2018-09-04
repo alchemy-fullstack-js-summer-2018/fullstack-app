@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PlayerDisplay from './PlayerDisplay';
 import { connect } from 'react-redux';
-import { getGames } from './reducers';
-import { getUser } from '../app/reducers';
-import { requestGame } from './actions';
+import { getGames, getStats } from './reducers';
+import { getUser } from '../auth/reducers';
+import { requestGame, getStatsById } from './actions';
 
 export class Dashboard extends Component {
 
   static propTypes = {
     user: PropTypes.object,
     games: PropTypes.string,
+    stats: PropTypes.object,
     requestGame: PropTypes.func.isRequired,
+    getStatsById: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
   };
+
+  componentDidMount() {
+    const { getStatsById, user } = this.props;
+    getStatsById(user.profile._id);
+  }
 
   componentDidUpdate() {
     const { games, history } = this.props;
@@ -24,11 +31,11 @@ export class Dashboard extends Component {
   }
 
   render() { 
-    const { user, requestGame } = this.props;
+    const { user, requestGame, stats } = this.props;
 
     return (
       <div>
-        <PlayerDisplay profile={user.profile}/>
+        <PlayerDisplay profile={user.profile} stats={stats}/>
         {user && <button onClick={requestGame}>PLAY GORTS</button>}
       </div>
     );
@@ -38,7 +45,8 @@ export class Dashboard extends Component {
 export default connect(
   state => ({
     user: getUser(state),
-    games: getGames(state)
+    games: getGames(state),
+    stats: getStats(state)
   }),
-  { requestGame }
+  { requestGame, getStatsById }
 )(Dashboard);

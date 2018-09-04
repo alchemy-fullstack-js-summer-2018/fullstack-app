@@ -8,12 +8,12 @@ class PlayerDisplay extends PureComponent {
 
   static propTypes = {
     profile: PropTypes.object.isRequired,
-    wins: PropTypes.number,
-    losses: PropTypes.number
+    stats: PropTypes.object.isRequired
   };
 
   render() { 
-    const { wins = 0, losses = 0, profile } = this.props;
+    const { stats, profile } = this.props;
+    const { totalWins, totalGames } = stats;
     const { name, location, rank } = profile;
 
     return ( 
@@ -23,8 +23,8 @@ class PlayerDisplay extends PureComponent {
         <h3>Rank: {rank}</h3>
         <h3>Statistics:</h3>
         <ul>
-          <li>Wins: {wins}</li>
-          <li>Losses: {losses}</li>
+          <li>Wins: {totalWins}</li>
+          <li>Total Games: {totalGames}</li>
         </ul>
       </section>
     );

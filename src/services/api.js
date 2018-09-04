@@ -26,3 +26,5 @@ export const verifyUser = token => {
     }
   });
 };
+
+export const getStatsById = id => get(`${MATCH_URL}/stats/${id}`);  

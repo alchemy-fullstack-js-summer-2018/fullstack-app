@@ -10,7 +10,7 @@ export function game(state = null, { type, payload }) {
     case GAME_LOAD:
       return payload;
     case GAME_END:
-      return false;
+      return null;
     default:
       return state;
   }
