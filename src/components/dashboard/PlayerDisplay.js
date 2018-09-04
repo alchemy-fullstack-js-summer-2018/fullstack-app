@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styles from './playerDisplay.css';
 
 class PlayerDisplay extends PureComponent {
   state = { 
@@ -14,18 +15,21 @@ class PlayerDisplay extends PureComponent {
   render() { 
     const { stats, profile } = this.props;
     const { totalWins, totalGames } = stats;
-    const { name, location, rank } = profile;
+    const { name, location, rank, avatar } = profile;
 
     return ( 
-      <section>
-        <h1>{name}</h1>
-        <h3>Location: {location}</h3>
-        <h3>Rank: {rank}</h3>
-        <h3>Statistics:</h3>
-        <ul>
-          <li>Wins: {totalWins}</li>
-          <li>Total Games: {totalGames}</li>
-        </ul>
+      <section className={styles.playerDisplay}>
+        <img src={avatar} />
+        <section className="playerInfo">
+          <h1>{name}</h1>
+          <p>Location: {location}</p>
+          <p>Rank: {rank}</p>
+          <p>Statistics:</p>
+          <ul>
+            <li>Total Wins: {totalWins}</li>
+            <li>Total Games: {totalGames}</li>
+          </ul>
+        </section>
       </section>
     );
   }

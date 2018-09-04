@@ -15,10 +15,10 @@ class GameDisplay extends Component {
     const { you, opponent, moves, selection } = this.props;
 
     return (
-      <div className={styles.gameDisplay}>
+      <section className={styles.gameDisplay}>
         <Player player={you} isYou={true} selection={selection}/>
         <Player player={opponent} isYou={false} moves={moves}/>
-      </div>
+      </section>
     );
   }
 }
