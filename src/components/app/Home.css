@@ -16,8 +16,10 @@
     font-size: 3em;
   }
 
-  ul {
-    padding: 0;
+  .rules {
+    padding: 10px 0 0 0;
+    /* border: 1px solid white; */
+    width: 300px;
   }
 
 
