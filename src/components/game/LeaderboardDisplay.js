@@ -11,22 +11,20 @@ class LeaderboardDisplay extends Component {
   };
 
   componentDidMount() {
-    // const { loadLeaders } = this.props;
-    console.log(this.props);
     this.props.loadLeaders();
   }
 
   render() { 
-    // const { leaders } = this.props;
+    const { leaders } = this.props;
 
     return (
       <div>
         <h2>Top 5 Most Successful Generals</h2>
-        {/* <p>{leaders[0].name}: {leaders[0].wins}</p>
-        <p>{leaders[1].name}: {leaders[1].wins}</p>
-        <p>{leaders[2].name}: {leaders[2].wins}</p>
-        <p>{leaders[3].name}: {leaders[3].wins}</p>
-        <p>{leaders[4].name}: {leaders[4].wins}</p> */}
+        <ul>
+          {leaders.map(leader => {
+            <li>{leader.name}: {leader.wins}</li>;
+          })}
+        </ul>
       </div>
     );
   }
