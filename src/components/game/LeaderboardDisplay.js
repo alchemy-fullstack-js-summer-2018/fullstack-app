@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getLeaders } from '../dashboard/reducers';
 
 class LeaderboardDisplay extends Component {
   static propTypes = {
@@ -22,4 +24,8 @@ class LeaderboardDisplay extends Component {
   }
 }
  
-export default LeaderboardDisplay;
+export default connect(
+  state => ({
+    leaders: getLeaders(state)
+  }, null)
+)(LeaderboardDisplay);
