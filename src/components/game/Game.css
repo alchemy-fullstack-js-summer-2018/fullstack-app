@@ -1,4 +1,8 @@
 :local(.game) {
-  height: 800px;
-  background-image: linear-gradient(grey, darkblue);
+  background: rgba(247, 247, 247, .5);
+  display: grid;
+  grid-template: 3fr 1fr / 1fr;
+
+
+
 }

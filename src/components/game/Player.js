@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Player.css';
 
 class Player extends Component {
   
@@ -16,14 +17,29 @@ class Player extends Component {
     const { wins, troops } = player;
 
     return (
-      <div>
-        <h3>{isYou ? 'You' : 'Opponent'}</h3>
-        <p>Wins: {wins}</p>
-        {moves &&
-          <h1>opponent has bid.</h1>
-        }
-        <h1>{selection}</h1>
-        <p>Troops: {troops}{buildArray(troops).map((n, i) => <img key={i} src="https://i.imgur.com/iWo9fR6.png"/>)}</p>
+      <div className={styles.player}>
+        <section className="name-area">
+          <h3>{isYou ? 'You' : 'Opponent'}</h3>
+          <span>{buildArray(wins)
+            .map((n, i) => 
+              <i key={i} className="fas fa-star"></i>
+            )
+          }</span>
+        </section>
+        <section className="move">
+          {moves &&
+            <h1>Ready</h1>
+          }
+          <h1>{selection}</h1>
+        </section>
+        <p>{buildArray(troops)
+          .map((n, i) => 
+            <img className={isYou ? 'you' : 'opponent'} key={i} src={isYou
+              ? 'https://i.imgur.com/iWo9fR6.png'
+              : 'https://i.imgur.com/DfIxmLr.png'}
+            />
+          )
+        }</p>
         
       </div>
     );
@@ -31,7 +47,7 @@ class Player extends Component {
 }
 const buildArray = number => {
   let arr = [];
-  for(let i = 0; i <= number; i++) {
+  for(let i = 0; i < number; i++) {
     arr.push(i);
   }
   return arr;
