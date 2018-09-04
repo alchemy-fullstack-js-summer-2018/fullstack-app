@@ -27,6 +27,6 @@ export const verifyUser = token => {
   });
 };
 
-export const getLeaderboard = () => get(`${URL}/leaderboard`);
+export const getLeaderboard = () => get(`${MATCH_URL}/ranks/leaderboard`);
 
 export const getStatsById = id => get(`${MATCH_URL}/stats/${id}`);  
