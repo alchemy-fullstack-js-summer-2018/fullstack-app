@@ -7,16 +7,25 @@ class PlayerDisplay extends PureComponent {
   };
 
   static propTypes = {
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    stats: PropTypes.object.isRequired
   };
 
   render() { 
-
-    const { name, location, avatar } = this.props;
+    const { stats, profile } = this.props;
+    const { totalWins, totalGames } = stats;
+    const { name, location, rank } = profile;
 
     return ( 
       <section>
-        <h1>player</h1>
+        <h1>{name}</h1>
+        <h3>Location: {location}</h3>
+        <h3>Rank: {rank}</h3>
+        <h3>Statistics:</h3>
+        <ul>
+          <li>Wins: {totalWins}</li>
+          <li>Total Games: {totalGames}</li>
+        </ul>
       </section>
     );
   }

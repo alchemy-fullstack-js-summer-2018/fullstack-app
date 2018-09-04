@@ -36,7 +36,7 @@ class Game extends Component {
 
   componentDidUpdate() {
     const { game, history } = this.props;
-    if(game !== false) return;
+    if(game !== null) return;
     history.push({
       pathname: '/dashboard'
     });
