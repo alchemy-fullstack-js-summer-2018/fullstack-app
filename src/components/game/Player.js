@@ -12,12 +12,12 @@ class Player extends Component {
   };
 
   render() { 
-    const { player, selection, moves } = this.props;
+    const { player, selection, moves, isYou } = this.props;
     const { wins, troops } = player;
 
     return (
       <div>
-        <h3>{isYou ? 'You' : {player.name}</h3>
+        <h3>{isYou ? 'You' : 'Opponent'}</h3>
         <p>Wins: {wins}</p>
         {moves &&
           <h1>opponent has bid.</h1>
