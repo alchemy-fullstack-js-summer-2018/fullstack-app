@@ -70,14 +70,14 @@ class Game extends Component {
     opponent.uid = opponentId;
 
     return (
-      <section className={styles.game}>
+      <div className={styles.game}>
         <GameDisplay
           you={you}
           opponent={opponent}
           selection={selection}
           moves={moves.includes(opponentId)}/>
         <Bidder troops={you.troops} onSelect={this.handleSelect} onSubmit={this.handleSubmit}/>
-      </section>
+      </div>
     );
   }
 }

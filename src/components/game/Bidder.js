@@ -17,15 +17,16 @@ class Bidder extends Component {
     const { troops, onSelect, onSubmit } = this.props;
     return (
       <section className={styles.bidder}>
-        <div >
+        <button onClick={onSubmit} className="submit">Submit</button>
+
+        <span>
           {buildArray(troops).map(troop => (
             <button
               className="numbers"
               key={troop}
               onClick={() => onSelect(troop)}>{troop}</button>
           ))}
-        </div>
-        <button onClick={onSubmit} className="submit">Submit</button>
+        </span>
 
       </section>
     );
@@ -34,7 +35,7 @@ class Bidder extends Component {
  
 const buildArray = number => {
   let arr = [];
-  for(let i = 0; i <= number; i++) {
+  for(let i = 1; i <= number; i++) {
     arr.push(i);
   }
   return arr;
