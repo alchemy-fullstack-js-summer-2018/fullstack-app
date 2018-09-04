@@ -10,7 +10,7 @@ import Home from './Home';
 import Game from '../game/Game';
 import Auth from '../auth/Auth';
 import Dashboard from '../dashboard/Dashboard';
-// import styles from './App.css'
+import styles from './App.css'
 
 class App extends Component {
 
@@ -28,10 +28,8 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
-          <header>
-            <Header/>
-          </header>
+        <div className={styles.app}>
+          <Header/>
 
           <main>
             {checkedAuth &&

@@ -1,20 +1,26 @@
 :local(.header) {
-  border-bottom: 2px solid green;
-  
   section {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    display: flex;
+    flex-direction: column;
     height: 100px;
+  }
+
+  h1 {
+    color: #FF570C;
+    letter-spacing: 5px;
+    font-size: 1em;
   }
 
   span {
     font-size: .5em;
     text-align: right;
   }
+
   ul {
     padding: 0;
     height: 100%;
     display: flex;
+    font-size: .7em;
     justify-content: space-around;
     align-items: center;
   }
@@ -22,4 +28,11 @@
   li {
     list-style-type: none;
   }
+
+  a {
+    color: #F7F7F7;
+    text-decoration: none;
+  }
+
+
 }
