@@ -1,0 +1,14 @@
+:local(.dashboard) {
+  background: rgba(97, 97, 97, 0.7);
+  button {
+    background: #FF570C;
+    border: none;
+    font-size: 1.5em;
+    margin-bottom: 50px;
+    padding: 6px;
+  }
+  button:hover {
+    background: white;
+  }
+
+}

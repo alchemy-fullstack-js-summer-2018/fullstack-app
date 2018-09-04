@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getGames, getStats } from './reducers';
 import { getUser } from '../auth/reducers';
 import { requestGame, getStatsById } from './actions';
+import styles from './Dashboard.css';
 
 export class Dashboard extends Component {
 
@@ -34,7 +35,7 @@ export class Dashboard extends Component {
     const { user, requestGame, stats } = this.props;
 
     return (
-      <div>
+      <div className={styles.dashboard}>
         <PlayerDisplay profile={user.profile} stats={stats}/>
         {user && <button onClick={requestGame}>PLAY GORTS</button>}
       </div>
