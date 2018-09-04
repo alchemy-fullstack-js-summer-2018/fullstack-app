@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Player extends Component {
+  
+
   static propTypes = {
+    isYou: PropTypes.bool.isRequired,
     player: PropTypes.object.isRequired,
     selection: PropTypes.number,
     moves: PropTypes.bool
@@ -14,7 +17,7 @@ class Player extends Component {
 
     return (
       <div>
-        <h3>You</h3>
+        <h3>{isYou ? 'You' : {player.name}</h3>
         <p>Wins: {wins}</p>
         {moves &&
           <h1>opponent has bid.</h1>

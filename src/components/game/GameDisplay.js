@@ -16,8 +16,8 @@ class GameDisplay extends Component {
 
     return (
       <div className={styles.gameDisplay}>
-        <Player player={you} selection={selection}/>
-        <Player player={opponent} moves={moves}/>
+        <Player player={you} isYou={true} selection={selection}/>
+        <Player player={opponent} isYou={false} moves={moves}/>
       </div>
     );
   }
