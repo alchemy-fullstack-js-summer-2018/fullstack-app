@@ -1,0 +1,17 @@
+:local(.app) {
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div {
+    width: 95%;
+    height: 95%;
+    border-radius: 10px;
+    /* background: rgba(39, 39, 39, 0.7); */
+    /* background-image: linear-gradient(to bottom right, #2980B9, #33CCCC); */
+    background-image: linear-gradient(to bottom right, rgba(41, 128, 185, 0.7), rgba(51, 204, 204, 0.7));
+
+  }
+}

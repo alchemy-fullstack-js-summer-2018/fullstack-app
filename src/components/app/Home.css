@@ -1,0 +1,29 @@
+:local(.home) {
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0px;
+  color: white;
+
+  h1 {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    padding: 20px 0px;
+    letter-spacing: .2em;
+    font-size: 3em;
+  }
+
+  .rules {
+    padding: 10px 0 0 0;
+    /* border: 1px solid white; */
+    width: 300px;
+  }
+
+
+  li {
+    text-align: left;
+  }
+}
