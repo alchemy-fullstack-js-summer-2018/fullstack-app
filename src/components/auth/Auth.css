@@ -1,7 +1,13 @@
 :local(.auth) {
   color: #f7f7f7;
+  background: #606470;
+  font-family: 'Metamorphous', cursive;
 
-  div {
-    background: #606470;
+  a {
+    color: #ff570c;
+    text-decoration: none;
+    border-style: 2px solid;
+    font-family: 'Metamorphous', cursive;
   }
+
 }
