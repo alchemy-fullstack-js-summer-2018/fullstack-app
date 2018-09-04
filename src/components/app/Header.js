@@ -20,11 +20,9 @@ class Header extends Component {
     const { user, logout } = this.props;
 
     return (
-      <div className={styles.header}>
+      <header className={styles.header}>
         <section>
-          <div>
-            <h1><NavLink exact to="/">GORTS</NavLink></h1>
-          </div>
+          <h1><NavLink exact to="/">GORTS</NavLink></h1>
           <nav>
             <ul>
               { user &&
@@ -50,7 +48,7 @@ class Header extends Component {
         </section>
 
         <Error/>
-      </div>
+      </header>
     );
   }
 }
