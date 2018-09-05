@@ -1,4 +1,4 @@
-https://game-6c547.firebaseapp.com/
+Play on Heroku! https://gorts.herokuapp.com/
 
 # Gorts
 
